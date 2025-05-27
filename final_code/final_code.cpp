@@ -1,5 +1,6 @@
-﻿#include <iostream>
+﻿
 
+#include <iostream>
 using namespace std;
 
 struct Product {
@@ -74,19 +75,68 @@ void displayProducts(Product inventory[], int productCount) {
         cout << "Нет товаров на складе.\n";
         return;
     }
-    cout << "ID       Название                                            Производитель                                      Цена       Категория                                            Дата поступ. Дата ист.\n";
+
 
     for (int i = 0; i < productCount; i++) {
-        cout << inventory[i].id << " "
-            << inventory[i].name << " "
-            << inventory[i].brand << " "
-            << inventory[i].price << " "
-            << inventory[i].category << " "
-            << inventory[i].arrivalDate << " "
-            << inventory[i].expiryDate << endl;
+        cout << inventory[i].id << " | "
+            << inventory[i].name << " имя | "
+            << inventory[i].brand << " производитель | "
+            << inventory[i].price << " цена | "
+            << inventory[i].category << " категория | "
+            << inventory[i].arrivalDate << " дата поступ. | "
+            << inventory[i].expiryDate << " дата ист." << endl;
     }
 }
 
-int main() {
 
+int main() {
+    setlocale(LC_ALL, "");
+    Product inventory[100];
+    int productCount = 0;
+    int choice;
+    do {
+        cout << "1. Add Product\n2. Remove Product\n3. Search Product by Name\n4. Sort Products by Price\n5. Display Products\n6. Exit\n";
+        cout << "Enter your choice: ";
+        cin >> choice;
+        if (choice >= 1 && choice <= 6)
+        {
+            switch (choice) {
+            case 1: addProduct(inventory, productCount); break;
+            case 2: {
+                int id;
+                cout << "Enter product ID to remove: ";
+                cin >> id;
+                removeProduct(inventory, id, productCount);
+                break;
+            }
+            case 3: {
+                char name[50];
+                cout << "Enter product name to search: ";
+                cin >> name;
+                searchProductByName(inventory, name, productCount);
+                break;
+            }
+            case 4:
+                sortProductsByPrice(inventory, productCount);
+                cout << "Products sorted by price." << endl;
+                break;
+            case 5:
+                displayProducts(inventory, productCount);
+                break;
+            case 6:
+                cout << "Exiting...\n";
+                break;
+            default:
+                cout << "Invalid choice!\n";
+                break;
+            }
+        }
+        else
+        {
+            cout << "error number out of count" << endl;
+        }
+
+    } while (choice != 6);
+
+    return 0;
 }
