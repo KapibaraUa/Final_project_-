@@ -1,6 +1,4 @@
-﻿
-
-#include <iostream>
+﻿#include <iostream>
 using namespace std;
 
 struct Product {
@@ -78,15 +76,14 @@ void displayProducts(Product inventory[], int productCount) {
 
 
     for (int i = 0; i < productCount; i++) {
-        cout << inventory[i].id << " | "
-            << inventory[i].name << " имя | "
-            << inventory[i].brand << " производитель | "
-            << inventory[i].price << " цена | "
-            << inventory[i].category << " категория | "
-            << inventory[i].arrivalDate << " дата поступ. | "
-            << inventory[i].expiryDate << " дата ист." << endl;
+        cout << "ID: " << inventory[i].id << " | "
+             << "имя: " << inventory[i].name << " | "
+             << "производитель: " << inventory[i].brand << " | "
+             << "цена: " << inventory[i].price << " | "
+             << "категория: " << inventory[i].category << " | "
+             << "дата поступ.: " << inventory[i].arrivalDate << " | "
+             << "дата ист.: " << inventory[i].expiryDate << endl;
     }
-}
 
 
 int main() {
